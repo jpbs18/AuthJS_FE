@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import Welcome from "./components/Welcome";
+import Signup from "./components/auth/Signup";
+import Feature from "./components/auth/Feature";
+import Signout from "./components/auth/Signout";
+import Signin from "./components/auth/Signin";
+import { BrowserRouter, Route } from "react-router-dom";
+import StateProvider from "./redux/store";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+
+ReactDOM.render(
+  <StateProvider>
+    <BrowserRouter>
+      <App>
+        <Route exact path="/" component={Welcome} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/signin" component={Signin} />
+        <Route path="/feature" component={Feature} />
+        <Route path="/signout" component={Signout} />
+      </App>
+    </BrowserRouter>
+  </StateProvider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
